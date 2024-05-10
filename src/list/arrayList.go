@@ -34,7 +34,7 @@ func (a *ArrayList[T]) AddIndex(data T, index int) {
 		return
 	} else if index == 0 {
 		a.elementData = append([]T{data}, a.elementData...)
-	} else if index > a.Size() {
+	} else if index >= a.Size() {
 		a.Add(data)
 	} else {
 		a.elementData = append(a.elementData[:index], append([]T{data}, a.elementData[index:]...)...)

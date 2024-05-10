@@ -53,9 +53,11 @@ func (l *LinkedList[T]) AddFirst(data T) {
 }
 
 func (l *LinkedList[T]) AddIndex(data T, index int) {
-	if index == 0 {
+	if index < 0 {
+		return
+	} else if index == 0 {
 		l.AddFirst(data)
-	} else if index == l.size {
+	} else if index >= l.Size() {
 		l.AddLast(data)
 	} else {
 		current := l.head

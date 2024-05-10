@@ -8,13 +8,13 @@ import (
 	"time"
 )
 
-func TestArrayList(t *testing.T) {
+func TestLinkedList(t *testing.T) {
 	fmt.Println()
-	log.Println("------------Test ArrayList------------")
+	log.Println("------------Test LinkedList------------")
 }
 
-func TestArrayList_Add(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_Add(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 
@@ -29,8 +29,8 @@ func TestArrayList_Add(t *testing.T) {
 	}
 }
 
-func TestArrayList_AddLast(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_AddLast(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.AddLast(1)
 	array.AddLast(2)
 
@@ -45,8 +45,8 @@ func TestArrayList_AddLast(t *testing.T) {
 	}
 }
 
-func TestArrayList_AddFirst(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_AddFirst(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.AddFirst(1)
 	array.AddFirst(2)
 	array.AddFirst(3)
@@ -62,8 +62,8 @@ func TestArrayList_AddFirst(t *testing.T) {
 	}
 }
 
-func TestArrayList_AddIndex(t *testing.T) {
-	array := NewArrayList[string]()
+func TestLinkedList_AddIndex(t *testing.T) {
+	array := NewLinkedList[string]()
 	array.AddIndex("a", 0)
 	array.AddIndex("b", 1)
 	array.AddIndex("c", 1)
@@ -83,8 +83,8 @@ func TestArrayList_AddIndex(t *testing.T) {
 	}
 }
 
-func TestArrayList_Get(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_Get(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 
@@ -93,8 +93,8 @@ func TestArrayList_Get(t *testing.T) {
 	}
 }
 
-func TestArrayList_GetFirst(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_GetFirst(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 
@@ -103,8 +103,8 @@ func TestArrayList_GetFirst(t *testing.T) {
 	}
 }
 
-func TestArrayList_GetLast(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_GetLast(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 
@@ -113,8 +113,8 @@ func TestArrayList_GetLast(t *testing.T) {
 	}
 }
 
-func TestArrayList_GetIndex(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_GetIndex(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 	array.Add(3)
@@ -130,8 +130,8 @@ func TestArrayList_GetIndex(t *testing.T) {
 	}
 }
 
-func TestArrayList_Remove(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_Remove(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 	array.Add(3)
@@ -145,8 +145,8 @@ func TestArrayList_Remove(t *testing.T) {
 	}
 }
 
-func TestArrayList_Contains(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_Contains(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 
 	if array.Contains(1) == false {
@@ -157,8 +157,8 @@ func TestArrayList_Contains(t *testing.T) {
 	}
 }
 
-func TestArrayList_ToArray(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_ToArray(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 	array.Add(3)
@@ -172,8 +172,8 @@ func TestArrayList_ToArray(t *testing.T) {
 	}
 }
 
-func TestArrayList_Clear(t *testing.T) {
-	array := NewArrayList[int]()
+func TestLinkedList_Clear(t *testing.T) {
+	array := NewLinkedList[int]()
 	array.Add(1)
 	array.Add(2)
 	array.Add(3)
@@ -185,9 +185,9 @@ func TestArrayList_Clear(t *testing.T) {
 }
 
 // -----------------Benchmark-------------
-func arraylistAdd(count int, random bool) {
+func linkedListAdd(count int, random bool) {
 	rand.Seed(time.Now().UnixNano())
-	array := NewArrayList[int]()
+	array := NewLinkedList[int]()
 	for i := 0; i < count; i++ {
 		if random {
 			array.AddIndex(i, rand.Intn(i+1))
@@ -198,37 +198,28 @@ func arraylistAdd(count int, random bool) {
 }
 
 // 顺序写入
-func BenchmarkArrayList_add1000(b *testing.B) {
-	arraylistAdd(1000, false)
+func BenchmarkLinkedList_add1000(b *testing.B) {
+	linkedListAdd(1000, false)
 }
-func BenchmarkArrayList_add10000(b *testing.B) {
-	arraylistAdd(10000, false)
+func BenchmarkLinkedList_add10000(b *testing.B) {
+	linkedListAdd(10000, false)
 }
-func BenchmarkArrayList_add100000(b *testing.B) {
-	arraylistAdd(100000, false)
+func BenchmarkLinkedList_add100000(b *testing.B) {
+	linkedListAdd(100000, false)
 }
 
 // 随机写入
-func BenchmarkArrayList_addRandom1000(b *testing.B) {
-	arraylistAdd(1000, true)
+func BenchmarkLinkedList_addRandom1000(b *testing.B) {
+	linkedListAdd(1000, true)
 }
-func BenchmarkArrayList_addRandom10000(b *testing.B) {
-	arraylistAdd(10000, true)
+func BenchmarkLinedList_addRandom10000(b *testing.B) {
+	linkedListAdd(10000, true)
 }
-func BenchmarkArrayList_addRandom100000(b *testing.B) {
-	arraylistAdd(100000, true)
+func BenchmarkLinkedList_addRandom100000(b *testing.B) {
+	linkedListAdd(100000, true)
 }
 
-//func BenchmarkArrayList_Add(b *testing.B) {
-//	array := NewArrayList[int]()
-//	for i := 0; i < b.N; i++ {
-//		for n := 0; n < 1000; n++ {
-//			array.Add(n)
-//		}
-//	}
-//}
-
-func ArrayListGetIndex(b *testing.B, count int, random bool) {
+func LinkedListGetIndex(b *testing.B, count int, random bool) {
 	array := NewArrayList[int]()
 	for n := 0; n < 1000; n++ {
 		array.Add(n)
@@ -249,23 +240,23 @@ func ArrayListGetIndex(b *testing.B, count int, random bool) {
 }
 
 // 顺序读取
-func BenchmarkArrayList_GetIndex1000(b *testing.B) {
-	ArrayListGetIndex(b, 1000, false)
+func BenchmarkLinkedList_GetIndex1000(b *testing.B) {
+	LinkedListGetIndex(b, 1000, false)
 }
-func BenchmarkArrayList_GetIndex10000(b *testing.B) {
-	ArrayListGetIndex(b, 10000, false)
+func BenchmarkLinkedList_GetIndex10000(b *testing.B) {
+	LinkedListGetIndex(b, 10000, false)
 }
-func BenchmarkArrayList_GetIndex100000(b *testing.B) {
-	ArrayListGetIndex(b, 100000, false)
+func BenchmarkLinkedList_GetIndex100000(b *testing.B) {
+	LinkedListGetIndex(b, 100000, false)
 }
 
 // 随机读取
-func BenchmarkArrayList_GetIndexRandom1000(b *testing.B) {
-	ArrayListGetIndex(b, 1000, true)
+func BenchmarkLinkedList_GetIndexRandom1000(b *testing.B) {
+	LinkedListGetIndex(b, 1000, true)
 }
-func BenchmarkArrayList_GetIndexRandom10000(b *testing.B) {
-	ArrayListGetIndex(b, 10000, true)
+func BenchmarkLinkedList_GetIndexRandom10000(b *testing.B) {
+	LinkedListGetIndex(b, 10000, true)
 }
-func BenchmarkArrayList_GetIndexRandom100000(b *testing.B) {
-	ArrayListGetIndex(b, 100000, true)
+func BenchmarkLinkedList_GetIndexRandom100000(b *testing.B) {
+	LinkedListGetIndex(b, 100000, true)
 }

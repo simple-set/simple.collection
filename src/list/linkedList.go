@@ -48,8 +48,8 @@ func (l *LinkedList[T]) AddFirst(data T) {
 		newNode := newDataNodeAll(data, l.head, nil)
 		l.head.prev = newNode
 		l.head = newNode
+		l.size++
 	}
-	l.size++
 }
 
 func (l *LinkedList[T]) AddIndex(data T, index int) {
@@ -65,13 +65,13 @@ func (l *LinkedList[T]) AddIndex(data T, index int) {
 		newNode := newDataNodeAll(data, current, current.prev)
 		current.prev.next = newNode
 		current.prev = newNode
+		l.size++
 	}
-	l.size++
 }
 
 func (l *LinkedList[T]) Get() (T, error) {
 	if l.tail != nil {
-		return l.head.data, nil
+		return l.tail.data, nil
 	}
 	return *new(T), errors.New("empty List")
 }
@@ -88,9 +88,13 @@ func (l *LinkedList[T]) GetFirst() (T, error) {
 }
 
 func (l *LinkedList[T]) GetIndex(index int) (T, error) {
+	if l.Size() <= 0 {
+		return *new(T), errors.New("empty List")
+	}
 	if index < 0 || index >= l.size {
 		return *new(T), errors.New("index out of bounds")
 	}
+
 	current := l.head
 	for i := 0; i < index; i++ {
 		current = current.next
@@ -107,25 +111,25 @@ func (l *LinkedList[T]) Remove() {
 }
 
 func (l *LinkedList[T]) Contains(data T) bool {
-	if l.tail == nil {
+	if l.Size() <= 0 {
 		return false
 	}
 
 	dataValue := reflect.ValueOf(data)
 	current := l.head
-	for i := 0; i < l.size; i++ {
-		current = current.next
+	for {
 		nodeValue := reflect.ValueOf(current.data)
 		if dataValue.Kind() == nodeValue.Kind() && dataValue.Interface() == nodeValue.Interface() {
 			return true
 		}
+		if current.next == nil {
+			return false
+		}
+		current = current.next
 	}
-	return false
 }
 
 func (l *LinkedList[T]) Size() int {
-	//TODO implement me
-	//panic("implement me")
 	return l.size
 }
 
@@ -141,6 +145,7 @@ func (l *LinkedList[T]) ToArray() []T {
 		if current.next == nil {
 			break
 		}
+		current = current.next
 	}
 	return arr
 }

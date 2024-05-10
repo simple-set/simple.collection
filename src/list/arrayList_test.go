@@ -184,7 +184,7 @@ func TestArrayList_Clear(t *testing.T) {
 	}
 }
 
-// -----------------Benchmark-------------
+// -----------------Benchmark 写入-------------
 func arraylistAdd(count int, random bool) {
 	rand.Seed(time.Now().UnixNano())
 	array := NewArrayList[int]()
@@ -204,8 +204,8 @@ func BenchmarkArrayList_add1000(b *testing.B) {
 func BenchmarkArrayList_add10000(b *testing.B) {
 	arraylistAdd(10000, false)
 }
-func BenchmarkArrayList_add100000(b *testing.B) {
-	arraylistAdd(100000, false)
+func BenchmarkArrayList_add50000(b *testing.B) {
+	arraylistAdd(50000, false)
 }
 
 // 随机写入
@@ -215,19 +215,11 @@ func BenchmarkArrayList_addRandom1000(b *testing.B) {
 func BenchmarkArrayList_addRandom10000(b *testing.B) {
 	arraylistAdd(10000, true)
 }
-func BenchmarkArrayList_addRandom100000(b *testing.B) {
-	arraylistAdd(100000, true)
+func BenchmarkArrayList_addRandom50000(b *testing.B) {
+	arraylistAdd(50000, true)
 }
 
-//func BenchmarkArrayList_Add(b *testing.B) {
-//	array := NewArrayList[int]()
-//	for i := 0; i < b.N; i++ {
-//		for n := 0; n < 1000; n++ {
-//			array.Add(n)
-//		}
-//	}
-//}
-
+// -----------------Benchmark 读取-------------
 func ArrayListGetIndex(b *testing.B, count int, random bool) {
 	array := NewArrayList[int]()
 	for n := 0; n < 1000; n++ {
@@ -255,8 +247,8 @@ func BenchmarkArrayList_GetIndex1000(b *testing.B) {
 func BenchmarkArrayList_GetIndex10000(b *testing.B) {
 	ArrayListGetIndex(b, 10000, false)
 }
-func BenchmarkArrayList_GetIndex100000(b *testing.B) {
-	ArrayListGetIndex(b, 100000, false)
+func BenchmarkArrayList_GetIndex50000(b *testing.B) {
+	ArrayListGetIndex(b, 50000, false)
 }
 
 // 随机读取
@@ -266,6 +258,6 @@ func BenchmarkArrayList_GetIndexRandom1000(b *testing.B) {
 func BenchmarkArrayList_GetIndexRandom10000(b *testing.B) {
 	ArrayListGetIndex(b, 10000, true)
 }
-func BenchmarkArrayList_GetIndexRandom100000(b *testing.B) {
-	ArrayListGetIndex(b, 100000, true)
+func BenchmarkArrayList_GetIndexRandom50000(b *testing.B) {
+	ArrayListGetIndex(b, 50000, true)
 }

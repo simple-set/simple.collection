@@ -184,7 +184,7 @@ func TestLinkedList_Clear(t *testing.T) {
 	}
 }
 
-// -----------------Benchmark-------------
+// -----------------Benchmark 写入-------------
 func linkedListAdd(count int, random bool) {
 	rand.Seed(time.Now().UnixNano())
 	array := NewLinkedList[int]()
@@ -204,23 +204,24 @@ func BenchmarkLinkedList_add1000(b *testing.B) {
 func BenchmarkLinkedList_add10000(b *testing.B) {
 	linkedListAdd(10000, false)
 }
-func BenchmarkLinkedList_add100000(b *testing.B) {
-	linkedListAdd(100000, false)
+func BenchmarkLinkedList_add50000(b *testing.B) {
+	linkedListAdd(50000, false)
 }
 
 // 随机写入
 func BenchmarkLinkedList_addRandom1000(b *testing.B) {
 	linkedListAdd(1000, true)
 }
-func BenchmarkLinedList_addRandom10000(b *testing.B) {
+func BenchmarkLinkedList_addRandom10000(b *testing.B) {
 	linkedListAdd(10000, true)
 }
-func BenchmarkLinkedList_addRandom100000(b *testing.B) {
-	linkedListAdd(100000, true)
+func BenchmarkLinkedList_addRandom50000(b *testing.B) {
+	linkedListAdd(50000, true)
 }
 
+// -----------------Benchmark 读取-------------
 func LinkedListGetIndex(b *testing.B, count int, random bool) {
-	array := NewArrayList[int]()
+	array := NewLinkedList[int]()
 	for n := 0; n < 1000; n++ {
 		array.Add(n)
 	}
@@ -246,8 +247,8 @@ func BenchmarkLinkedList_GetIndex1000(b *testing.B) {
 func BenchmarkLinkedList_GetIndex10000(b *testing.B) {
 	LinkedListGetIndex(b, 10000, false)
 }
-func BenchmarkLinkedList_GetIndex100000(b *testing.B) {
-	LinkedListGetIndex(b, 100000, false)
+func BenchmarkLinkedList_GetIndex50000(b *testing.B) {
+	LinkedListGetIndex(b, 50000, false)
 }
 
 // 随机读取
@@ -257,6 +258,6 @@ func BenchmarkLinkedList_GetIndexRandom1000(b *testing.B) {
 func BenchmarkLinkedList_GetIndexRandom10000(b *testing.B) {
 	LinkedListGetIndex(b, 10000, true)
 }
-func BenchmarkLinkedList_GetIndexRandom100000(b *testing.B) {
-	LinkedListGetIndex(b, 100000, true)
+func BenchmarkLinkedList_GetIndexRandom50000(b *testing.B) {
+	LinkedListGetIndex(b, 50000, true)
 }

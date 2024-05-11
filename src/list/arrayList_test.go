@@ -204,9 +204,6 @@ func BenchmarkArrayList_add1000(b *testing.B) {
 func BenchmarkArrayList_add10000(b *testing.B) {
 	arraylistAdd(10000, false)
 }
-func BenchmarkArrayList_add50000(b *testing.B) {
-	arraylistAdd(50000, false)
-}
 
 // 随机写入
 func BenchmarkArrayList_addRandom1000(b *testing.B) {
@@ -214,9 +211,6 @@ func BenchmarkArrayList_addRandom1000(b *testing.B) {
 }
 func BenchmarkArrayList_addRandom10000(b *testing.B) {
 	arraylistAdd(10000, true)
-}
-func BenchmarkArrayList_addRandom50000(b *testing.B) {
-	arraylistAdd(50000, true)
 }
 
 // -----------------Benchmark 读取-------------
@@ -247,9 +241,6 @@ func BenchmarkArrayList_GetIndex1000(b *testing.B) {
 func BenchmarkArrayList_GetIndex10000(b *testing.B) {
 	ArrayListGetIndex(b, 10000, false)
 }
-func BenchmarkArrayList_GetIndex50000(b *testing.B) {
-	ArrayListGetIndex(b, 50000, false)
-}
 
 // 随机读取
 func BenchmarkArrayList_GetIndexRandom1000(b *testing.B) {
@@ -257,7 +248,4 @@ func BenchmarkArrayList_GetIndexRandom1000(b *testing.B) {
 }
 func BenchmarkArrayList_GetIndexRandom10000(b *testing.B) {
 	ArrayListGetIndex(b, 10000, true)
-}
-func BenchmarkArrayList_GetIndexRandom50000(b *testing.B) {
-	ArrayListGetIndex(b, 50000, true)
 }

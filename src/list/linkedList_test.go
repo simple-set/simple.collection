@@ -204,9 +204,6 @@ func BenchmarkLinkedList_add1000(b *testing.B) {
 func BenchmarkLinkedList_add10000(b *testing.B) {
 	linkedListAdd(10000, false)
 }
-func BenchmarkLinkedList_add50000(b *testing.B) {
-	linkedListAdd(50000, false)
-}
 
 // 随机写入
 func BenchmarkLinkedList_addRandom1000(b *testing.B) {
@@ -214,9 +211,6 @@ func BenchmarkLinkedList_addRandom1000(b *testing.B) {
 }
 func BenchmarkLinkedList_addRandom10000(b *testing.B) {
 	linkedListAdd(10000, true)
-}
-func BenchmarkLinkedList_addRandom50000(b *testing.B) {
-	linkedListAdd(50000, true)
 }
 
 // -----------------Benchmark 读取-------------
@@ -247,9 +241,6 @@ func BenchmarkLinkedList_GetIndex1000(b *testing.B) {
 func BenchmarkLinkedList_GetIndex10000(b *testing.B) {
 	LinkedListGetIndex(b, 10000, false)
 }
-func BenchmarkLinkedList_GetIndex50000(b *testing.B) {
-	LinkedListGetIndex(b, 50000, false)
-}
 
 // 随机读取
 func BenchmarkLinkedList_GetIndexRandom1000(b *testing.B) {
@@ -257,7 +248,4 @@ func BenchmarkLinkedList_GetIndexRandom1000(b *testing.B) {
 }
 func BenchmarkLinkedList_GetIndexRandom10000(b *testing.B) {
 	LinkedListGetIndex(b, 10000, true)
-}
-func BenchmarkLinkedList_GetIndexRandom50000(b *testing.B) {
-	LinkedListGetIndex(b, 50000, true)
 }

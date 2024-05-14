@@ -11,11 +11,7 @@ type dataNode[T any] struct {
 	prev *dataNode[T]
 }
 
-func newDataNode[T any](data T) *dataNode[T] {
-	return &dataNode[T]{data: data}
-}
-
-func newDataNodeAll[T any](data T, next *dataNode[T], prev *dataNode[T]) *dataNode[T] {
+func newDataNode[T any](data T, next *dataNode[T], prev *dataNode[T]) *dataNode[T] {
 	return &dataNode[T]{data: data, next: next, prev: prev}
 }
 
@@ -27,10 +23,10 @@ type LinkedList[T any] struct {
 
 func (l *LinkedList[T]) Add(data T) {
 	if l.tail == nil {
-		l.head = newDataNode(data)
+		l.head = newDataNode(data, nil, nil)
 		l.tail = l.head
 	} else {
-		newNode := newDataNodeAll(data, nil, l.tail)
+		newNode := newDataNode(data, nil, l.tail)
 		l.tail.next = newNode
 		l.tail = newNode
 	}
@@ -45,7 +41,7 @@ func (l *LinkedList[T]) AddFirst(data T) {
 	if l.head == nil {
 		l.Add(data)
 	} else {
-		newNode := newDataNodeAll(data, l.head, nil)
+		newNode := newDataNode(data, l.head, nil)
 		l.head.prev = newNode
 		l.head = newNode
 		l.size++
@@ -64,7 +60,7 @@ func (l *LinkedList[T]) AddIndex(data T, index int) {
 		for i := 0; i < index; i++ {
 			current = current.next
 		}
-		newNode := newDataNodeAll(data, current, current.prev)
+		newNode := newDataNode(data, current, current.prev)
 		current.prev.next = newNode
 		current.prev = newNode
 		l.size++

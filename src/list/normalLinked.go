@@ -18,7 +18,7 @@ func (n *NormalLinked[T]) AddTailNode(data T) {
 
 func (n *NormalLinked[T]) AddNextNode(data T) {
 	if n.current != nil {
-		newNode := newDataNodeAll(data, n.current.next, n.current)
+		newNode := newDataNode(data, n.current.next, n.current)
 		if n.current.next != nil {
 			n.current.next.prev = newNode
 		} else {
@@ -35,7 +35,7 @@ func (n *NormalLinked[T]) AddPrevNode(data T) {
 		return
 	}
 
-	newNode := newDataNodeAll(data, n.current, n.current.prev)
+	newNode := newDataNode(data, n.current, n.current.prev)
 	if n.current.prev != nil {
 		n.current.prev.next = newNode
 	} else {
